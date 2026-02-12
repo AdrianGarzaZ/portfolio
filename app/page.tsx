@@ -1,4 +1,7 @@
+import { projects } from '../src/data/projects';
+import ProjectCard from '../src/components/ProjectCard';
 import SkillBridge from '../src/components/SkillBridge'
+
 
 export default function Home() {
   return (
@@ -17,11 +20,18 @@ export default function Home() {
       {/* The Bridge Component */}
       <SkillBridge />
 
-      {/* Placeholder for Projects */}
-      <div className="max-w-5xl mx-auto px-4 py-20 border-t border-slate-900">
-         <h2 className="text-2xl font-bold">Featured Projects</h2>
-         {/* We will build this next */}
-      </div>
+      <section className="max-w-5xl mx-auto px-4 py-24">
+        <div className="mb-16">
+          <h2 className="text-4xl font-bold mb-4">Simulation Labs</h2>
+          <p className="text-slate-400">Case studies in computational modeling and data extraction.</p>
+        </div>
+
+        <div className="space-y-8">
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
