@@ -7,21 +7,21 @@ export interface Skill {
 
 export const skills: Skill[] = [
   {
-    category: "Modeling & Simulation",
-    physicsContext: "Stochastic & Deterministic Physical Systems",
-    analystContext: "Predictive Analytics & Risk Modeling",
-    tools: ["Python", "MATLAB", "C++"]
+    category: "Optical Engineering & Simulation",
+    physicsContext: "Waveguide Design & Physical Optics",
+    analystContext: "System Optimization & Constraint Logic",
+    tools: ["Ansys Lumerical", "Zemax (OpticStudio)", "FDTD/MODE", "Laser Physics"]
   },
   {
-    category: "Data Transformation",
-    physicsContext: "Signal Processing & Noise Filtering",
-    analystContext: "ETL Pipelines & Data Cleaning",
-    tools: ["Pandas", "NumPy", "SciPy"]
+    category: "Computational Physics",
+    physicsContext: "Signal Processing & Interferometry",
+    analystContext: "Algorithm Development & Automation",
+    tools: ["Python", "MATLAB", "Julia", "Genetic Algorithms"]
   },
   {
-    category: "Optimization",
-    physicsContext: "Optical Path & Waveguide Optimization",
-    analystContext: "Operational Efficiency & Logic Tuning",
-    tools: ["Genetic Algorithms", "PyTorch"]
+    category: "Data Science & Engineering",
+    physicsContext: "Experimental Data Acquisition",
+    analystContext: "ETL Pipelines, Dashboarding & SQL",
+    tools: ["Pandas/NumPy", "SQL (MySQL)", "Flask", "Plotly Dash", "Git"]
   }
 ];
