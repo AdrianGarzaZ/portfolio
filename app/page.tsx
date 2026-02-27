@@ -1,10 +1,8 @@
 'use client';
 
 import { projects } from '../src/data/projects';
-import SkillBridge from '../src/components/SkillBridge';
 import ProjectCard from '../src/components/ProjectCard';
 import Experience from '../src/components/Experience';
-import AnalyticsChart from '../src/components/AnalyticsChart';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -130,7 +128,6 @@ export default function Home() {
           className="text-[1.05rem] text-slate-400 max-w-xl mx-auto leading-relaxed"
           custom={5} initial="hidden" animate="visible" variants={fadeUp}
         >
-          Hi! I'm a senior M.Sc. student in Photonics with a specialization in Machine Learning, graduated from Tecnológico de Monterrey with a B.Sc. in Engineering Physics. I have a strong programming and analytical background,focused on bridging complex physical problems with data driven computational solutions.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -160,12 +157,6 @@ export default function Home() {
           </a>
         </motion.div>
       </section>
-
-      {/* Skills Component */}
-      <SkillBridge />
-
-      {/* Analytics Chart */}
-      <AnalyticsChart />
 
       {/* Experience Timeline */}
       <Experience />

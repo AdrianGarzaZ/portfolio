@@ -6,7 +6,7 @@ import { experiences } from '../data/experience';
 export default function Experience() {
   return (
     <section className="py-20 px-4 max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-12 text-slate-100">Professional History</h2>
+      <h2 className="text-3xl font-bold mb-12 text-slate-100">Professional Experience</h2>
 
       <div className="relative border-l border-slate-800 ml-3 md:ml-6 space-y-12">
         {experiences.map((exp, index) => (
