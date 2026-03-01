@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Adrián Garza Zapata | Translating Physics into Data",
-  description: "Portfolio of Adrián Garza Zapata, MSc Photonics candidate bridging complex optical simulations and production-grade data engineering.",
+  title: "Adrián Garza Zapata | Physical Insight and Data Solutions",
+  description: "Portfolio of Adrián Garza Zapata, MSc Photonics candidate bridging complex optical theory and production-grade data engineering.",
 };
 
 export default function RootLayout({
@@ -23,9 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.variable} ${jetbrainsMono.variable} antialiased bg-slate-950 text-slate-100 font-sans`}
       >
         {children}
       </body>
