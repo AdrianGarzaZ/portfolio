@@ -1,44 +1,80 @@
 'use client';
-import { motion } from 'framer-motion';
 
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { experiences } from '../data/experience';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Timeline items reveal
+      const items = gsap.utils.toArray<HTMLElement>('.gsap-timeline-item');
+
+      items.forEach((item, i) => {
+        gsap.fromTo(item,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+            }
+          }
+        );
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 px-4 max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold mb-12 text-slate-100">Professional Experience</h2>
+    <section ref={containerRef} className="py-24 px-4 max-w-4xl mx-auto">
+      <div className="mb-16">
+        <h2 className="text-4xl font-bold font-outfit text-white mb-2">Professional Experience</h2>
+        <p className="text-slate-400 font-jetbrains-mono text-sm tracking-wide">
+          [LOG]: Career trajectory spanning photonics research and data engineering.
+        </p>
+      </div>
 
-      <div className="relative border-l border-slate-800 ml-3 md:ml-6 space-y-12">
+      <div className="relative border-l-2 border-slate-800 ml-4 md:ml-6 space-y-16">
         {experiences.map((exp, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="relative pl-8 md:pl-12"
+            className="gsap-timeline-item relative pl-8 md:pl-12 group"
           >
-            {/* Timeline Dot */}
-            <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-blue-500 ring-4 ring-slate-900" />
+            {/* Timeline Dot (Pulse on hover) */}
+            <span className="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full bg-slate-900 border-2 border-blue-500 group-hover:bg-blue-500 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-all duration-300" />
 
-            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-              <h3 className="text-xl font-semibold text-white">{exp.role}</h3>
-              <span className="text-sm font-mono text-slate-500">{exp.period}</span>
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-3">
+              <h3 className="text-2xl font-bold font-outfit text-slate-100 group-hover:text-white transition-colors">
+                {exp.role}
+              </h3>
+              <span className="text-sm font-jetbrains-mono text-slate-500 border border-slate-800 bg-slate-900/50 px-3 py-1 rounded w-fit mt-2 sm:mt-0">
+                {exp.period}
+              </span>
             </div>
 
-            <p className="text-blue-400 font-medium mb-2">{exp.company}</p>
-            <p className="text-slate-400 mb-4 leading-relaxed max-w-2xl">
+            <p className="text-blue-400 font-jetbrains-mono font-medium mb-4">{exp.company}</p>
+            <p className="text-slate-400 mb-6 leading-relaxed">
               {exp.description}
             </p>
 
             <div className="flex flex-wrap gap-2">
               {exp.tags.map(tag => (
-                <span key={tag} className="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded border border-slate-700">
+                <span key={tag} className="text-xs font-jetbrains-mono bg-slate-900 text-slate-300 px-2.5 py-1 rounded border border-slate-800 hover:border-slate-600 transition-colors">
                   {tag}
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
