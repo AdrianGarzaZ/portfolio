@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 @layer components {
+
   /* Hide scrollbar structure for sleekness but keep functionality */
   ::-webkit-scrollbar {
     width: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+
   ::-webkit-scrollbar-thumb {
     @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
   }
@@ -15,4 +18,8 @@
 
 body {
   @apply bg-slate-950 text-slate-100;
+}
+
+.nav-scrolled {
+  @apply bg-slate-950/90 backdrop-blur-md border border-slate-800 shadow-lg shadow-slate-950/20;
 }

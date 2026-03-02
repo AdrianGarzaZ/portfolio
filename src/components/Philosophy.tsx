@@ -19,7 +19,7 @@ export default function Philosophy() {
                     trigger: containerRef.current,
                     start: "top 60%",
                     end: "bottom 80%",
-                    toggleActions: "play none none reverse"
+                    scrub: 1 // Links animation progress directly to scrollbar smoothly
                 }
             });
 
