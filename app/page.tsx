@@ -76,7 +76,6 @@ export default function Home() {
 
           {/* Degree Badge */}
           <div className="gsap-hero-item inline-flex items-center gap-3 mb-8 px-5 py-2 border border-slate-800 rounded-full bg-slate-900/50 backdrop-blur-sm shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)] animate-pulse" />
             <span className="text-blue-400 text-sm font-jetbrains-mono tracking-wide">
               BSc Engineering Physics &nbsp;|&nbsp; MSc Physics
             </span>
@@ -99,7 +98,7 @@ export default function Home() {
               href="#archive"
               className="w-full sm:w-auto px-8 py-3.5 rounded-sm border border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition-all duration-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] flex justify-center items-center font-medium"
             >
-              Analyze Workflow
+              Case Studies
             </a>
             <a
               href="/CV/CV_AdrianGarza_2025.pdf"
@@ -108,7 +107,7 @@ export default function Home() {
               className="w-full sm:w-auto px-8 py-3.5 rounded-sm border border-slate-700 hover:border-slate-500 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-all duration-200 flex justify-center items-center gap-3 font-medium"
             >
               <FileText className="w-4 h-4" />
-              Access Record
+              CV
             </a>
           </div>
 
@@ -132,7 +131,6 @@ export default function Home() {
       <FeaturesDashboard />
 
       {/* The Manifesto */}
-      <Philosophy />
 
       {/* Experience Timeline */}
       <div id="capabilities" className="py-12 bg-slate-950 border-t border-slate-900">
@@ -164,21 +162,17 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-outfit font-bold text-white mb-6">Initialize Contact</h2>
+            <h2 className="text-3xl font-outfit font-bold text-white mb-6"></h2>
             <a href="mailto:adriangarza.int@gmail.com" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white rounded-lg font-medium transition-all duration-200 shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]">
               <Mail className="w-5 h-5" />
-              Request Engineering Analysis
+              Get in contact
             </a>
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-800/60 pt-8 mt-8">
-            <div className="flex items-center gap-3 mb-4 md:mb-0 bg-slate-900 border border-slate-800 px-4 py-2 rounded flex-shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-              <span className="text-xs font-jetbrains-mono text-slate-400">SYSTEM OPERATIONAL // UPTIME: 99.9%</span>
-            </div>
 
             <p className="text-slate-500 text-sm font-jetbrains-mono text-center md:text-right">
-              © {new Date().getFullYear()} AGZ. All systems nominal.
+              © {new Date().getFullYear()} AGZ.
             </p>
           </div>
         </div>

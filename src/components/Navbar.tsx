@@ -55,14 +55,14 @@ export default function Navbar() {
                         `}
                     >
                         <div className="flex items-center space-x-6 text-sm font-medium">
-                            <a href="#insight" className="text-slate-300 hover:text-white transition-colors">Insight</a>
-                            <a href="#capabilities" className="text-slate-300 hover:text-white transition-colors">Capabilities</a>
-                            <a href="#archive" className="text-slate-300 hover:text-white transition-colors">Archive</a>
+                            <a href="#insight" className="text-slate-300 hover:text-white transition-colors">Main</a>
+                            <a href="#capabilities" className="text-slate-300 hover:text-white transition-colors">Experience</a>
+                            <a href="#archive" className="text-slate-300 hover:text-white transition-colors">Highlights</a>
                             <a
                                 href="#contact"
                                 className="px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-400 transition-all"
                             >
-                                Initialize Contact
+                                Contact Me
                             </a>
                         </div>
                     </div>
