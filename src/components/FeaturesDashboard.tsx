@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Terminal, Activity, Focus } from 'lucide-react';
+import MexicoMap from './MexicoMap';
 
 const telemetryLogs = [
     "INITIALIZING OPTICAL ARRAY...",
@@ -17,11 +18,14 @@ const telemetryLogs = [
 ];
 
 const mapLocations = [
-    { x: 18, y: 15 }, { x: 25, y: 35 }, { x: 65, y: 56 }, { x: 45, y: 65 },
-    { x: 65, y: 75 }, { x: 90, y: 75 }, { x: 100, y: 65 }, { x: 110, y: 85 },
-    { x: 120, y: 75 }, { x: 130, y: 88 }, { x: 125, y: 100 }, { x: 50, y: 50 }
+    { x: 37.7, y: 30.1 }, { x: 45.9, y: 58.5 }, { x: 62.3, y: 69.9 }, { x: 29.5, y: 30.1 },
+    { x: 45.9, y: 47.2 }, { x: 29.5, y: 35.8 }, { x: 54.1, y: 69.9 }, { x: 54.1, y: 47.2 },
+    { x: 37.7, y: 64.2 }, { x: 13.2, y: 24.4 }, { x: 54.1, y: 41.5 }, { x: 21.4, y: 35.8 },
+    { x: 95.0, y: 58.5 }, { x: 45.9, y: 41.5 }, { x: 29.5, y: 24.4 }, { x: 54.1, y: 52.9 },
+    { x: 45.9, y: 30.1 }, { x: 70.5, y: 75.6 }, { x: 70.5, y: 69.9 }, { x: 54.1, y: 64.2 },
+    { x: 37.7, y: 58.5 }, { x: 45.9, y: 35.8 }, { x: 45.9, y: 64.2 }, { x: 45.9, y: 52.9 }
 ];
-const redDot = { x: 82, y: 46 }; // Monterrey area
+const redDot = { x: 55.0, y: 42.0 }; // True location aligned firmly within Monterrey bounds
 
 export default function FeaturesDashboard() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -104,28 +108,32 @@ export default function FeaturesDashboard() {
 
         // Data Pipelines Map Animation Logic
         let activeIndices = new Set();
+        let lastSpawnedIndex = -1;
+
         const spawnConnection = () => {
             if (!running) return;
+
+            // Limit to exactly 6 simultaneous points
+            if (activeIndices.size >= 6) return;
+
             const available: number[] = [];
             for (let i = 0; i < mapLocations.length; i++) {
-                if (!activeIndices.has(i)) available.push(i);
+                // Do not allow currently active points, or the very last point to spawn
+                if (!activeIndices.has(i) && i !== lastSpawnedIndex) {
+                    available.push(i);
+                }
             }
             if (available.length === 0) return;
 
             const index = available[Math.floor(Math.random() * available.length)];
             activeIndices.add(index);
+            lastSpawnedIndex = index;
+
 
             const node = containerRef.current?.querySelector(`#data-node-${index}`);
             if (!node) return;
 
-            const dot = node.querySelector('.node-dot');
-            const line = node.querySelector('.node-line') as SVGPathElement;
-
-            if (!dot || !line) return;
-
-            const length = line.getTotalLength();
-            gsap.set(line, { strokeDasharray: length, strokeDashoffset: length, opacity: 0 });
-            gsap.set(dot, { scale: 0, opacity: 0 });
+            gsap.set(node, { opacity: 0 }); // Hide the parent group
 
             const tl = gsap.timeline({
                 onComplete: () => {
@@ -133,22 +141,19 @@ export default function FeaturesDashboard() {
                 }
             });
 
-            // Bring dot in
-            tl.to(dot, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" })
-                // Draw the trajectory arc
-                .to(line, { strokeDashoffset: 0, opacity: 0.8, duration: 1.5, ease: "power2.inOut" }, "-=0.2")
-                // Hold for a moment to establish visual connection
+            // Fade the entire composed group to avoid intersection artifacts
+            tl.to(node, { opacity: 0.8, duration: 1.5, ease: "power2.inOut" })
+                // Hold connection
                 .to({}, { duration: 2.5 })
                 // Fade out
-                .to(line, { opacity: 0, duration: 1 })
-                .to(dot, { scale: 0, opacity: 0, duration: 0.5 }, "<0.5");
+                .to(node, { opacity: 0, duration: 1.5, ease: "power2.inOut" });
         };
 
-        const interval = setInterval(spawnConnection, 1200);
+        const interval = setInterval(spawnConnection, 800);
 
-        // Initial bursts
-        for (let i = 0; i < 4; i++) {
-            setTimeout(spawnConnection, i * 600);
+        // Initial bursts to quickly reach the 6-point limit
+        for (let i = 0; i < 6; i++) {
+            setTimeout(spawnConnection, i * 400);
         }
 
         return () => {
@@ -200,85 +205,67 @@ export default function FeaturesDashboard() {
                         </div>
                     </div>
                     {/* Body */}
-                    <div className="p-6 h-64 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 flex items-center justify-center relative overflow-hidden">
-                        {/* Grid overlay */}
-                        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: `linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
+                    <div className="p-6 h-64 bg-slate-950 flex flex-col items-center justify-center relative overflow-hidden">
 
                         {/* Isometric Map Animation Container */}
                         <div className="absolute inset-0 flex items-center justify-center perspective-[1000px] z-10 w-full h-full p-2 pointer-events-none">
-                            <svg
-                                viewBox="0 0 150 120"
-                                className="w-full h-auto max-w-[280px] drop-shadow-2xl transition-transform duration-700 ease-out 
-                                           [transform:rotateX(55deg)_rotateZ(-40deg)] group-hover:[transform:rotateX(45deg)_rotateZ(-25deg)_scale(1.05)]"
-                                style={{ transformStyle: 'preserve-3d' }}
+                            <div
+                                className="relative w-full max-w-[280px] drop-shadow-2xl [transform:rotateX(20deg)] transition-all"
+                                style={{ transformStyle: 'preserve-3d', aspectRatio: '1/1' }}
                             >
-                                {/* Abstract Mexico Polygon */}
-                                <path
-                                    d="M 15 15 L 22 55 L 33 25 L 48 30 L 70 45 L 90 40 L 95 70 L 125 70 L 140 85 L 135 102 L 115 95 L 105 110 L 85 95 L 60 75 L 40 55 L 25 35 Z"
-                                    fill="rgba(30, 41, 59, 0.5)"
-                                    stroke="rgba(71, 85, 105, 0.8)"
-                                    strokeWidth="0.5"
-                                    vectorEffect="non-scaling-stroke"
-                                    className="group-hover:stroke-slate-400 transition-colors duration-500"
-                                />
+                                <MexicoMap className="w-full h-full absolute inset-0 text-emerald-500" />
 
-                                {/* Base connection nodes (empty placeholders so they mount initially) */}
-                                {mapLocations.map((loc, i) => {
-                                    const midX = (loc.x + redDot.x) / 2;
-                                    const midY = (loc.y + redDot.y) / 2;
-                                    const dx = loc.x - redDot.x;
-                                    const dy = loc.y - redDot.y;
-                                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                                    // 3D Arc math: By pulling the control point negatively in both X and Y simultaneously, 
-                                    // it creates a visually vertical curve rising off the tilted map.
-                                    const zHeight = dist * 0.45;
-                                    const cx = midX - zHeight;
-                                    const cy = midY - zHeight;
-
-                                    const pathD = `M ${loc.x} ${loc.y} Q ${cx} ${cy} ${redDot.x} ${redDot.y}`;
-
-                                    return (
-                                        <g key={i} id={`data-node-${i}`} className="data-node">
-                                            <path
-                                                className="node-line drop-shadow-[0_0_2px_#10b981]"
-                                                d={pathD}
-                                                fill="none"
-                                                stroke="#10b981"
-                                                strokeWidth="0.75"
-                                                strokeLinecap="round"
-                                                opacity="0"
-                                            />
-                                            <circle
-                                                className="node-dot"
-                                                cx={loc.x}
-                                                cy={loc.y}
-                                                r="1.2"
-                                                fill="#10b981"
-                                                opacity="0"
-                                                style={{ transformOrigin: `${loc.x}px ${loc.y}px` }}
-                                            />
-                                        </g>
-                                    );
-                                })}
-
-                                {/* Root Hub (Monterrey area) */}
-                                <circle
-                                    cx={redDot.x}
-                                    cy={redDot.y}
-                                    r="2.5"
-                                    fill="rgba(239, 68, 68, 0.4)"
-                                    className="animate-ping"
-                                    style={{ transformOrigin: `${redDot.x}px ${redDot.y}px` }}
-                                />
-                                <circle
-                                    cx={redDot.x}
-                                    cy={redDot.y}
-                                    r="1.5"
-                                    fill="#ef4444"
-                                    className="drop-shadow-[0_0_4px_#ef4444]"
-                                />
-                            </svg>
+                                {/* Overlay Nodes */}
+                                <svg
+                                    className="absolute inset-0 w-full h-full"
+                                    style={{ overflow: 'visible' }}
+                                    viewBox="0 0 100 100"
+                                    preserveAspectRatio="none"
+                                >
+                                    {/* Data Nodes Container */}
+                                    {mapLocations.map((loc, i) => {
+                                        const pathD = `M ${loc.x} ${loc.y} Q ${(loc.x + redDot.x) / 2} ${Math.min(loc.y, redDot.y) - 20} ${redDot.x} ${redDot.y}`;
+                                        return (
+                                            <g key={i} id={`data-node-${i}`} className="data-node" style={{ opacity: 0 }}>
+                                                {/* Line rendered first (underneath) */}
+                                                <path
+                                                    className="node-line drop-shadow-[0_0_2px_#10b981]"
+                                                    d={pathD}
+                                                    fill="none"
+                                                    stroke="#10b981"
+                                                    strokeWidth="0.5"
+                                                    strokeLinecap="round"
+                                                />
+                                                {/* Dot rendered second (on top) */}
+                                                <circle
+                                                    className="node-dot"
+                                                    cx={loc.x}
+                                                    cy={loc.y}
+                                                    r="1"
+                                                    fill="#10b981"
+                                                    style={{ transformOrigin: `${loc.x}px ${loc.y}px` }}
+                                                />
+                                            </g>
+                                        );
+                                    })}
+                                    {/* Root Hub */}
+                                    <circle
+                                        cx={redDot.x}
+                                        cy={redDot.y}
+                                        r="2.5"
+                                        fill="rgba(239, 68, 68, 0.4)"
+                                        className="animate-ping"
+                                        style={{ transformOrigin: `${redDot.x}px ${redDot.y}px` }}
+                                    />
+                                    <circle
+                                        cx={redDot.x}
+                                        cy={redDot.y}
+                                        r="1.5"
+                                        fill="#ef4444"
+                                        className="drop-shadow-[0_0_4px_#ef4444]"
+                                    />
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
