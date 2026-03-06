@@ -29,7 +29,7 @@ export const projects: Project[] = [
     slug: "climate-etl"
   },
   {
-    title: "Photon Pair Source Optimization",
+    title: "Cambiar este al de Noise Simulation en Hubert Curien",
     role: "Research Assistant (Tec de Monterrey)",
     description: "Designed photon-pair sources for Optical Coherence Tomography (OCT) based on Spontaneous Four-Wave Mixing (SFWM).",
     analyticalInsight: "Automated dispersion and phase-matching analysis to maximize bandwidth, treating optical mode solving as a multi-variable optimization problem.",

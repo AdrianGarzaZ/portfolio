@@ -19,22 +19,22 @@ export const experiences: Experience[] = [
 
     {
         company: "Laboratoire Hubert Curien: Saint-Étienne, France",
-        role: "Research Intern - Functional Materials and Surfaces Group",
-        period: "June 2025 - Sept 2025",
+        role: "Machine Learning for Optics Research Intern",
+        period: "June 2025 - September 2025",
         description: "Collaborated with TOPPAN Security on laser processing techniques for security documents. Developed Python clustering frameworks to optimize color reproduction and visualize results.",
         tags: ["Research", "Machine Learning", "Dashboards"]
     },
     {
         company: "Lanax: Monterrey, México",
-        role: "Tech Startup Intern - Data Engineering",
-        period: "Aug 2023 - Sept 2024",
+        role: "Data Engineering Intern",
+        period: "August 2023 - September 2024",
         description: "Led data infrastructure development. Built MySQL databases and Flask APIs to feed climate data into machine learning models.",
         tags: ["SQL", "ETL", "Flask API"]
     },
     {
         company: "ITESM: Monterrey, México",
-        role: "Research Assistant - Photonics",
-        period: "Aug 2023 - Dec 2023",
+        role: "Simulation and Research Assistant",
+        period: "August 2023 - December 2023",
         description: "Simulated waveguide geometries for optical coherence tomography applications. Automated phase-matching analysis using MATLAB scripts and analyzed improvements in resolution.",
         tags: ["Ansys Lumerical", "Simulation", "Automation"]
     }

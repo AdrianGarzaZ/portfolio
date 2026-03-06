@@ -144,9 +144,9 @@ export default function Home() {
       <div id="highlights" className="py-24 bg-[linear-gradient(to_bottom,theme(colors.slate.950),theme(colors.slate.900))] border-t border-slate-800/50">
         <section className="max-w-5xl mx-auto px-4">
           <div className="mb-20 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-outfit text-white">Sequential Operations Archive</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-outfit text-white">Archive of Highlights</h2>
             <p className="text-blue-400 max-w-2xl mx-auto font-jetbrains-mono text-sm uppercase tracking-widest bg-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-sm w-fit">
-              [LOG]: Documenting physical theory translated into SQL pipelines and Python dashboards.
+              Documenting the transition from physical theory to data-driven solutions.
             </p>
           </div>
 
