@@ -7,25 +7,35 @@ export interface Experience {
 }
 
 export const experiences: Experience[] = [
+    
     {
-        company: "Laboratoire Hubert Curien (France)",
-        role: "Research Intern - Functional Materials",
+        company: "ILL: Grenoble, France",
+        role: "Computational Imaging & Scientific Software Intern",
+        period: "March 2026 - August 2026",
+        description: "Building Python based scientific data pipelines and computational imaging tools for neutron scattering experiments on the D4 diffractometer, enabling automated processing and visualization of large experimental datasets.",
+        tags: ["Data processing", "Python", "Computational Imaging"]
+    },
+
+
+    {
+        company: "Laboratoire Hubert Curien: Saint-Étienne, France",
+        role: "Research Intern - Functional Materials and Surfaces Group",
         period: "June 2025 - Sept 2025",
-        description: "Collaborated with TOPPAN Security on laser processing. Developed Python clustering frameworks to optimize color reproduction.",
-        tags: ["Research", "Clustering", "Dashboards"]
+        description: "Collaborated with TOPPAN Security on laser processing techniques for security documents. Developed Python clustering frameworks to optimize color reproduction and visualize results.",
+        tags: ["Research", "Machine Learning", "Dashboards"]
     },
     {
-        company: "Lanax (Mexico)",
+        company: "Lanax: Monterrey, México",
         role: "Tech Startup Intern - Data Engineering",
         period: "Aug 2023 - Sept 2024",
         description: "Led data infrastructure development. Built MySQL databases and Flask APIs to feed climate data into machine learning models.",
         tags: ["SQL", "ETL", "Flask API"]
     },
     {
-        company: "Tecnológico de Monterrey (Mexico)",
+        company: "ITESM: Monterrey, México",
         role: "Research Assistant - Photonics",
         period: "Aug 2023 - Dec 2023",
-        description: "Simulated waveguide geometries for OCT applications. Automated phase-matching analysis using MATLAB scripts.",
-        tags: ["Lumerical", "Simulation", "Automation"]
+        description: "Simulated waveguide geometries for optical coherence tomography applications. Automated phase-matching analysis using MATLAB scripts and analyzed improvements in resolution.",
+        tags: ["Ansys Lumerical", "Simulation", "Automation"]
     }
 ];

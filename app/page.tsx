@@ -41,7 +41,7 @@ export default function Home() {
       {/* Hero Section (The Initial Insight) */}
       <section
         ref={heroRef}
-        id="insight"
+        id="main"
         className="relative min-h-[100dvh] flex flex-col justify-center items-center px-4 pt-20 pb-16 overflow-hidden"
       >
         {/* Optical Background Texture */}
@@ -74,10 +74,13 @@ export default function Home() {
             Adrián Garza Zapata
           </h1>
 
-          {/* Degree Badge */}
-          <div className="gsap-hero-item inline-flex items-center gap-3 mb-8 px-5 py-2 border border-slate-800 rounded-full bg-slate-900/50 backdrop-blur-sm shadow-sm">
-            <span className="text-blue-400 text-sm font-jetbrains-mono tracking-wide">
-              BSc Engineering Physics &nbsp;|&nbsp; MSc Physics
+          <div className="gsap-hero-item inline-flex items-center gap-4 mb-8 px-6 py-3 border border-slate-800 rounded-full bg-slate-900/50 backdrop-blur-sm shadow-sm md:px-8 md:py-3.5">
+            <span className="flex items-center gap-2.5 text-blue-400 text-sm md:text-base font-jetbrains-mono tracking-wide">
+              <Image src="/images/itesm-aesthetic.svg" alt="Tec de Monterrey" width={20} height={20} className="opacity-90 grayscale-[0.2]" />
+              BSc Engineering Physics
+              <span className="text-slate-600 mx-1.5 md:mx-3">|</span>
+              <Image src="/images/eu.svg" alt="European Union" width={24} height={16} className="opacity-90 rounded-[2px]" />
+              MSc Physics and Machine Learning
             </span>
           </div>
 
@@ -95,7 +98,7 @@ export default function Home() {
           {/* Action Buttons */}
           <div className="gsap-hero-item flex flex-col sm:flex-row justify-center items-center gap-5 mb-12 font-jetbrains-mono text-sm uppercase tracking-wider">
             <a
-              href="#archive"
+              href="#highlights"
               className="w-full sm:w-auto px-8 py-3.5 rounded-sm border border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition-all duration-200 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] flex justify-center items-center font-medium"
             >
               Case Studies
@@ -133,12 +136,12 @@ export default function Home() {
       {/* The Manifesto */}
 
       {/* Experience Timeline */}
-      <div id="capabilities" className="py-12 bg-slate-950 border-t border-slate-900">
+      <div id="experience" className="py-12 bg-slate-950 border-t border-slate-900">
         <Experience />
       </div>
 
       {/* Projects Section */}
-      <div id="archive" className="py-24 bg-[linear-gradient(to_bottom,theme(colors.slate.950),theme(colors.slate.900))] border-t border-slate-800/50">
+      <div id="highlights" className="py-24 bg-[linear-gradient(to_bottom,theme(colors.slate.950),theme(colors.slate.900))] border-t border-slate-800/50">
         <section className="max-w-5xl mx-auto px-4">
           <div className="mb-20 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-outfit text-white">Sequential Operations Archive</h2>

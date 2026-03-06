@@ -40,7 +40,7 @@ export default function Experience() {
       <div className="mb-16">
         <h2 className="text-4xl font-bold font-outfit text-white mb-2">Professional Experience</h2>
         <p className="text-slate-400 font-jetbrains-mono text-sm tracking-wide">
-          [LOG]: Career trajectory spanning photonics research and data engineering.
+          {/* Add text if necessary to describe experience here */}
         </p>
       </div>
 

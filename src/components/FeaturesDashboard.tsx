@@ -6,15 +6,14 @@ import { Terminal, Activity, Focus } from 'lucide-react';
 import MexicoMap from './MexicoMap';
 
 const telemetryLogs = [
-    "INITIALIZING OPTICAL ARRAY...",
-    "CALIBRATING SENSOR ALIGNMENT... [OK]",
-    "LASER FREQUENCY LOCKED AT 193.4 THZ",
-    "CAPTURING PHOTONIC SCATTER DATA...",
-    "ANALYZING INTERFERENCE PATTERN...",
-    "EXTRACTING FEATURE VECTORS...",
-    "APPLYING NON-LINEAR TRANSFORM...",
-    "DATA PIPELINE SYNC ACHIEVED",
-    "AWAITING NEXT INPUT BURST..."
+    "PERFORMING HIERARCHICAL CLUSTERING...",
+    "METRIC EVALUATION...",
+    "GENERATING VISUALIZATIONS...",
+    "CREATING CUSTOM DISTANCE MATRIX...",
+    "OPTIMIZING CONVEX HULL VOLUME...",
+    "SIMULATING GAUSSIAN NOISE...",
+    "INITIALIZING DASHBOARD...",
+    "WRITING PARAMETER FILE..."
 ];
 
 const mapLocations = [
@@ -164,10 +163,10 @@ export default function FeaturesDashboard() {
     }, [mounted]);
 
     return (
-        <section ref={containerRef} className="py-24 px-4 max-w-7xl mx-auto relative z-10 w-full">
+        <section id="key-skills" ref={containerRef} className="py-24 px-4 max-w-7xl mx-auto relative z-10 w-full">
 
             <div className="mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 font-outfit text-white">Key Competencies</h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 font-outfit text-white">Key Skills</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -187,8 +186,8 @@ export default function FeaturesDashboard() {
                     </div>
                     {/* Body */}
                     <div className="p-6 h-64 bg-slate-950 flex flex-col justify-end font-jetbrains-mono text-xs sm:text-sm">
-                        <div className="text-slate-600 mb-2 truncate">{">"} SYSTEM BOOT SEQUENCE INITIATED...</div>
-                        <div className="text-slate-600 mb-2 truncate">{">"} ESTABLISHING SECURE CONNECTION...</div>
+                        <div className="text-slate-600 mb-2 truncate">{">"} LOADING OPTICAL DATA...</div>
+                        <div className="text-slate-600 mb-2 truncate">{">"} EXTRACTING LASER PARAMETERS...</div>
                         <div className="text-blue-400 font-medium break-all mt-1">
                             {"> "} <span ref={terminalTextRef}></span><span className="inline-block w-[0.6em] h-[1em] bg-blue-400 ml-1 animate-pulse align-middle" />
                         </div>
